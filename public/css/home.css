@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-    padding-top: 3rem;
+    padding-top: 0;
     padding-bottom: 3rem;
     color: #5a5a5a;
   }
@@ -30,8 +30,24 @@ a{
   .carousel-item {
     height: 32rem;
   }
-  
-  
+
+  /* home image */
+  .home{
+    color: white;
+    
+    height: 500px;
+    width: 100%;
+    background-image: url('/images/main.jpeg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    margin: 0 0 80px;
+  }
+
+  .home-description{
+    margin-top: 100px;
+    margin-left: 100px;
+    width: 40%;
+  }
   /* MARKETING CONTENT
   -------------------------------------------------- */
   
