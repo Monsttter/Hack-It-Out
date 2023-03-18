@@ -79,7 +79,7 @@ a {
 
   height: 500px;
   width: 100%;
-  background-image: url("/images/main.jpeg");
+  background-image: url("/images/main1.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   margin: 0 0 130px;
@@ -171,7 +171,8 @@ a {
 	font-size: 12px;
   color: #fff;
 }
-/* Mentor card image style */
+/* Mentor card image style 
+-------------------------------------------*/
   
 .mentor_body
 {
@@ -205,6 +206,9 @@ a {
 }
 a{
   text-decoration: none;
+}
+.icon{
+  margin:10px; 
 }
 .eapp-team-showcase-member-card-socials-icon {
   opacity: .4;
