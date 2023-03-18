@@ -46,6 +46,10 @@ a {
   background-color: #546e7a;
 }
 
+.others-nav > a{
+  color: #fff;
+}
+
 .nav-title {
   margin-left: 20px;
   
@@ -244,4 +248,62 @@ align-items: center;
   .featurette-heading {
     margin-top: 7rem;
   }
+}
+
+button{
+  border: none;
+  background-color: white;
+}
+
+button>a{
+  color: white;
+}
+
+
+.rate {
+  float: left;
+  height: 20px;
+  /* padding: 0 10px; */
+}
+.rate:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.rate:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:20px;
+  color:#ccc;
+}
+.rate:not(:checked) > label:before {
+  content: '★';
+}
+.rate > input:checked ~ label {
+  color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+.shine::before{
+content: '★';
+font-size:20px;
+color: #ffc700;
+
+}
+.notShine::before{
+content: '★';
+font-size:20px;
+color: #ccc;
 }

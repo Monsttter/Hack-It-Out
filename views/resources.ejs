@@ -2,16 +2,18 @@
 <%- include("partials/navbar") -%>
 
 
-      <div class="album py-5 bg-light my-4">
+      <div class="album py-5 my-4">
         <div class="container">
 
         <div class="row">
-            <h1>Tech</h1>
+            <h1>Computer Science</h1>
             <div class="row row-cols-1 row-cols-sm-6 g-3">
                 <% for(let i=0;i<fields.length;i++){
                   if(fields[i].upperField==="tech"){ %>
                     <div class="col-lg-3 text-center"><a href="/resources/<%=fields[i].fieldName%>">
-              <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="/images/resources/<%= fields[i].fieldName %>.jpg" alt=""></svg> -->
+              <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><img src="/images/resources/<%= fields[i].fieldName %>.jpg" width="140" height="140" alt=""><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+              <img class="rounded-circle auto-fill" src="/images/resources/<%= fields[i].fieldName %>.jpg" width="200" height="200" alt="">
               <h4 class="fw-normal my-2"><%= fields[i].fieldName %></h4> </a>
             </div>
             <%}
@@ -20,12 +22,28 @@
         </div>
 
         <div class="row my-5">
+          <h1>Gate</h1>
+          <div class="row row-cols-1 row-cols-sm-6 g-3">
+              <% for(let i=0;i<fields.length;i++){
+                if(fields[i].upperField==="gate"){ %>
+          <div class="col-lg-3 text-center"> <a href="/resources/<%=fields[i].fieldName%>">
+            <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+            <img class="rounded-circle auto-fill" src="/images/resources/<%= fields[i].fieldName %>.jpg" width="200" height="200" alt="">
+            <h4 class="fw-normal my-2"><%= fields[i].fieldName %></h4> </a>
+          </div>
+          <%}
+        }%>
+      </div>
+      </div>
+
+        <div class="row my-5">
             <h1>Civil Services</h1>
             <div class="row row-cols-1 row-cols-sm-6 g-3">
                 <% for(let i=0;i<fields.length;i++){
                   if(fields[i].upperField==="civilServices"){ %>
             <div class="col-lg-3 text-center"> <a href="/resources/<%=fields[i].fieldName%>">
-              <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+              <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
+              <img class="rounded-circle auto-fill" src="/images/resources/<%= fields[i].fieldName %>.jpg" width="200" height="200" alt="">
               <h4 class="fw-normal my-2"><%= fields[i].fieldName %></h4> </a>
             </div>
             <%}
