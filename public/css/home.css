@@ -6,7 +6,7 @@ body {
   padding-top: 0;
   padding-bottom: 0;
   color: #5a5a5a;
-  background-color: #e0f7fa;
+  /* background-color: #e0f7fa; */
 }
 
 a {
@@ -169,6 +169,52 @@ a {
   position: absolute;
 	font-size: 12px;
   color: #fff;
+}
+/* Mentor card image style */
+  
+.mentor_body
+{
+  margin: 5px 12% 0 12%;
+
+}
+.mentors_heading{
+  margin: 20px 0 40px 0;
+
+}
+.mentor_heading_text
+{
+  width:60%;
+}
+.card-img
+{
+  width: 30%;
+  float: right;
+  margin-right: 20px;
+  border-radius: 100%;
+}
+.card-body{
+  text-align: center;
+}
+.card {
+  --bs-card-border-width: none;
+}
+.card-img-top{
+  height: 60%;
+  border-radius: 10px;
+}
+a{
+  text-decoration: none;
+}
+.eapp-team-showcase-member-card-socials-icon {
+  opacity: .4;
+  transition: .3s ease opacity;
+}
+.JPKFG {
+  width: 20px;
+  height: 20px;
+}
+.mentor_text{
+align-items: center;
 }
 
 /* RESPONSIVE CSS
