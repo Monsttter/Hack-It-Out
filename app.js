@@ -155,8 +155,8 @@ app.post("/addRating", async function(req,res){
     }
 })
 
-app.get("/mentors", function(req,res){
-    res.render("mentors");
+app.get("/mentor", function(req,res){
+    res.render("mentor");
 })
 
 app.get("/login", function(req,res){

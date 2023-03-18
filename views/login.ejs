@@ -1,87 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Login</title>
-</head>
-<body>
+  <%- include("partials/header") -%>
 
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Title</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav me-auto mb-2 mb-md-0 navbar-right">
-                <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/about">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/resources">Resources</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/mentor">Mentors</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="login">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="register">Register</a>
-                </li>
-              </ul>
-              <!-- <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form> -->
-            </div>
-          </div>
-        </nav>
-      </header>
+  <%- include("partials/navbar") -%>
     
-    <section class="vh-100" style="background-color: #508bfc;">
-        <div class="container py-5 h-100">
+    <section class="vh-75">
+        <div class="container login-margin h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+              <div class="card shadow-2-strong" style="border-radius: 1rem; width: 450px;">
                 <div class="card-body p-5 text-center">
       
-                  <h3 class="mb-5">Sign in</h3>
+                  <h3 style="font-size: 40px; margin-bottom:10px">Sign in</h3>
+
+                  <div class="col s12 m6 offset-m3 center-align">
+                    <a class="oauth-container btn darken-4 white black-text" href="/users/google-oauth/" style="text-transform:none">
+                        <div class="left">
+                            <img width="20px" style="margin:8px" alt="Google sign-in" 
+                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                                <p style="display:inline-block; margin-right: 4px;">Login with Google</p>
+                        </div>
+                        <p style="margin-top: 10px;">Or use your account</p>
+                    </a>
+                  </div>
                   
                   <form action="/login" method="post">
                   <div class="form-outline mb-4">
-                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="username"/>
-                    <label class="form-label" for="typeEmailX-2">Email</label>
+                    <input type="email" id="typeEmailX-2" class="form-control form-control-lg" name="username" placeholder="Email"/>
                   </div>
       
                   <div class="form-outline mb-4">
-                    <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password" />
-                    <label class="form-label" for="typePasswordX-2">Password</label>
+                    <input type="password" id="typePasswordX-2" class="form-control form-control-lg" name="password" placeholder="Password"/>
                   </div>
-      
-                  <!-- Checkbox -->
-                  <!-- <div class="form-check d-flex justify-content-start mb-4">
-                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
-                    <label class="form-check-label" for="form1Example3"> Remember password </label>
-                  </div> -->
-      
                   <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 
                 </form>
-      
-                  <!-- <hr class="my-4">
-      
-                  <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
-                    type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
-                  <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
-                    type="submit"><i class="fab fa-facebook-f me-2"></i>Sign in with facebook</button> -->
       
                 </div>
               </div>
@@ -90,5 +41,4 @@
         </div>
       </section>
 
-</body>
-</html>
+      <%- include("partials/footer") -%>
