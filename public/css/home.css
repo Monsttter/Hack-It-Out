@@ -11,6 +11,7 @@ body {
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .bd-placeholder-img {
