@@ -172,7 +172,8 @@ a {
 	font-size: 12px;
   color: #fff;
 }
-/* Mentor card image style */
+/* Mentor card image style 
+-------------------------------------------*/
   
 .mentor_body
 {
@@ -219,6 +220,9 @@ a {
 }
 a{
   text-decoration: none;
+}
+.icon{
+  margin:10px; 
 }
 .eapp-team-showcase-member-card-socials-icon {
   opacity: .4;
