@@ -1,106 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Document</title>
-
-    <style>
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          user-select: none;
-        }
-  
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-  
-        .b-example-divider {
-          height: 3rem;
-          background-color: rgba(0, 0, 0, .1);
-          border: solid rgba(0, 0, 0, .15);
-          border-width: 1px 0;
-          box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-  
-        .b-example-vr {
-          flex-shrink: 0;
-          width: 1.5rem;
-          height: 100vh;
-        }
-  
-        .bi {
-          vertical-align: -.125em;
-          fill: currentColor;
-        }
-  
-        .nav-scroller {
-          position: relative;
-          z-index: 2;
-          height: 2.75rem;
-          overflow-y: hidden;
-        }
-  
-        .nav-scroller .nav {
-          display: flex;
-          flex-wrap: nowrap;
-          padding-bottom: 1rem;
-          margin-top: -1px;
-          overflow-x: auto;
-          text-align: center;
-          white-space: nowrap;
-          -webkit-overflow-scrolling: touch;
-        }
-      </style>
-
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Title</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav me-auto mb-2 mb-md-0 navbar-right">
-                <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/about">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/resources">Resources</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/mentor">Mentors</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/register">Register</a>
-                </li>
-              </ul>
-              <!-- <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form> -->
-            </div>
-          </div>
-        </nav>
-      </header>
+<%- include("partials/header") -%>
+<%- include("partials/navbar") -%>
 
 
-      <div class="album py-5 bg-light my-4">
+      <div class="album py-5 my-4">
         <div class="container">
             
           <h1><%= courseField.fieldName %></h1>
@@ -109,39 +11,65 @@
             <% for(let i=0;i<courseField.courses.length;i++){ %>
                 <div class="col">
                     <div class="card shadow-sm">
-                      <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                        <p class="card-text"><%= courseField.courses[i].creator %></p>
-                        <p ><%= courseField.courses[i].rating %></p>
-                    </div>
-                    <p class="text-end"><%= courseField.courses[i].ratedBy.length %> ratings</p>
-                        <div class="d-flex justify-content-between align-items-center">
+                      <img src="<%= courseField.courses[i].imgURL %>" alt="">
+                      <div class="mx-2 my-2">
+                        <div>
+                          <h4 class="card-text my-2">By <%= courseField.courses[i].creator %></h4>
+                          <p >
+                            <div class="d-flex align-items-center">
+                              <span class="mx-1" style="font-size: large; font-weight: 700; color: #f29c08;"><%= courseField.courses[i].rating %> </span>
+                                <span class="ratedStar">
+                                  <% for(let j=1;j<=5;j++){ 
+                                    if(j<courseField.courses[i].rating){ %>
+                                      <span class="shine"></span>
+                                    <% } else{ %>
+                                      <span class="notShine"></span>
+                                  <% }} %>
+                                </span>
+                                <span class="mx-1">(<%= courseField.courses[i].ratedBy.length %>)</span>
+                              </div>
+                          </p>
+                              <!-- <%= courseField.courses[i].rating %>(<%= courseField.courses[i].ratedBy.length %>)</p> -->
+                        </div>
+                
                           <div class="btn-group">
                               <a href="<%= courseField.courses[i].url %>"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
                           </div>
-                        </div>
                         <% if(user){
-                          console.log(courseField.courses[i].ratedBy);
-                          if(courseField.courses[i].ratedBy.find(usr=> {
-                            console.log(usr);
-                            <!-- return 1; -->
-                            return usr.substring(0,usr.length-1)===user.id;
-                            })){ %>
-                            <p>Your rating: <%= courseField.courses[i].ratedBy.find(usr => usr.substring(0,usr.length-1)===user.id).slice(-1) %></p>
-                          <% } else{ %>
-                            <p>Rate this course: 
-                              <form action="/addRating" method="post">
-                                <input type="number" name="rating" id="">
+                          <!-- console.log(courseField.courses[i].ratedBy); -->
+                          if(!courseField.courses[i].ratedBy.find(usr=> usr.substring(0,usr.length-1)===user.id)){ %>
+                              
+                            <% console.log(user.id);
+                            console.log(courseField.courses[i].ratedBy.find(usr=> usr.substring(0,usr.length-1))); %>
+
+                            <form action="/addRating" method="post">
                                 <input type="hidden" name="courseField" value="<%= courseField.id %>">
                                 <input type="hidden" name="fieldName" value="<%= courseField.fieldName %>">
                                 <input type="hidden" name="course" value="<%= courseField.courses[i].id %>">
-                                <button type="submit" name="user" value="<%=user.id%>">Submit</button>
-                              </form>
-                            </p>
-                          <% } %>
-                        <% } else{ %>
-                          <p>Sign In to give rating</p>
+
+                                <button type="submit" name="user" value="<%=user.id%>" onclick="document.querySelector('form').submit()">
+                                <div class="d-flex align-items-center">
+                                  <span>Rate this course:</span>
+                                <span> 
+          
+                                    <div class="rate">
+                                      <input type="radio" id="star5" name="rating" value="5" />
+                                      <label for="star5" title="text"></label>
+                                      <input type="radio" id="star4" name="rating" value="4" />
+                                      <label for="star4" title="text"></label>
+                                      <input type="radio" id="star3" name="rating" value="3" />
+                                      <label for="star3" title="text"></label>
+                                      <input type="radio" id="star2" name="rating" value="2" />
+                                      <label for="star2" title="text"></label>
+                                      <input type="radio" id="star1" name="rating" value="1" />
+                                      <label for="star1" title="text"></label>
+                                    </div>
+                                  </span>
+                                </div>
+                                  </button>
+                            </form>
+                        <% }} else{ %>
+                          <button class="btn btn-primary my-2"><a href="/login">Give rating</a></button>
                         <% } %>
                       </div>
                     </div>
@@ -152,6 +80,4 @@
         </div>
       </div>
 
-
-</body>
-</html>
+<%- include("partials/footer") -%>

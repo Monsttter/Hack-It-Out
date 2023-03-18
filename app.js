@@ -40,6 +40,7 @@ passport.deserializeUser(User.deserializeUser());
 
 const courseSchema= new mongoose.Schema({
     url: String,
+    imgURL: String,
     creator: String,
     rating: Number,
     ratedBy: [String]
@@ -56,26 +57,24 @@ const fieldSchema= new mongoose.Schema({
 
 const Field= mongoose.model("Field", fieldSchema);
 
-// const newField= new Field({
-//     fieldName: "App Development",
-//     upperField: "tech",
-//     courses: [],
-//     imgURL: ""
-// })
+const newField= new Field({
+    fieldName: "App Development",
+    upperField: "tech",
+    courses: []
+})
 
 // newField.save();
 
-// const newFields= new Field({
-//     fieldName: "UPSC",
-//     upperField: "civilServices",
-//     courses: [],
-//     imgURL: ""
-// })
+const newFields= new Field({
+    fieldName: "Power System",
+    upperField: "gate",
+    courses: [],
+})
 
 // newFields.save();
 
 app.get("/", function(req,res){
-    res.render("home");
+    res.render("home", {user:req.user});
 })
 
 app.get("/compose", function(req,res){
@@ -89,6 +88,7 @@ app.post("/compose", async function(req,res){
         // console.log(field);
         const newCourse= new Course({
             url: req.body.courseURL,
+            imgURL: req.body.imgURL,
             creator: req.body.creator,
             rating: 0,
             ratedBy: []
@@ -106,7 +106,7 @@ app.post("/compose", async function(req,res){
 app.get("/resources",  async function(req,res){
     try{
         const fields= await Field.find();
-        res.render("resources", {fields:fields});
+        res.render("resources", {fields:fields, user:req.user});
     } catch(err){
         console.log(err);
     }
@@ -123,13 +123,13 @@ app.get("/resources/:courseField", async function(req,res){
 
 app.post("/addRating", async function(req,res){
     try{
-
+        console.log(req.body);
         const field= await Field.findById(req.body.courseField);
 
         const course= field.courses.find(course => course.id===req.body.course);
         const index= field.courses.indexOf(course => course.id===course);
         course.ratedBy.push(req.body.user+req.body.rating);
-        course.rating= Math.round(((course.rating+Number(req.body.rating))/course.ratedBy.length)*10)/10;
+        course.rating= Math.round(((course.rating*(course.ratedBy.length-1)+Number(req.body.rating))/course.ratedBy.length)*10)/10;
         await field.courses.splice(index,1,course);
 
         if(field.courses.length>1){
@@ -156,11 +156,11 @@ app.post("/addRating", async function(req,res){
 })
 
 app.get("/mentor", function(req,res){
-    res.render("mentor");
+    res.render("mentor", {user:req.user});
 })
 
 app.get("/login", function(req,res){
-    res.render("login");
+    res.render("login", {user:req.user});
 })
 
 app.post('/login',
@@ -170,7 +170,7 @@ app.post('/login',
 });
 
 app.get("/register", function(req,res){
-    res.render("register");
+    res.render("register", {user:req.user});
 })
 
 app.post("/register", function(req,res){

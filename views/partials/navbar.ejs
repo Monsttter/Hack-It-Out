@@ -10,7 +10,7 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active link-light" href="/about">About</a>
+              <a class="nav-link active link-light" href="/#about">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active link-light" href="/resources">Resources</a>
@@ -18,12 +18,18 @@
             <li class="nav-item">
               <a class="nav-link active link-light" href="/mentor">Mentors</a>
             </li>
+            <% if(user){ %>
+              <li class="nav-item">
+                <a class="nav-link active" href="/logout">Logout</a>
+              </li>
+            <% } else { %>
             <li class="nav-item">
               <a class="nav-link active link-light" href="/login">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active link-light" href="/register">Register</a>
             </li>
+            <% } %>
           </ul>
         </div>
       </div>
