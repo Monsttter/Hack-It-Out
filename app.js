@@ -59,8 +59,8 @@ app.get("/resources/:courseField", function(req,res){
     res.render("courseField", {courseField:req.params.courseField})
 })
 
-app.get("/mentors", function(req,res){
-    res.render("mentors");
+app.get("/mentor", function(req,res){
+    res.render("mentor");
 })
 
 app.get("/login", function(req,res){
