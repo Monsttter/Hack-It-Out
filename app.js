@@ -1,9 +1,12 @@
+require('dotenv').config();
 const express= require("express");
 const bodyParser= require("body-parser");
 const mongoose= require("mongoose");
 const passport= require("passport");
 const passportLocalMongoose= require("passport-local-mongoose");
 const session= require("express-session");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require("mongoose-findorcreate");
 const _= require("lodash");
 
 const app= express();
@@ -13,7 +16,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 app.use(session({
-    secret: 'our little secret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
 }));
@@ -26,17 +29,32 @@ mongoose.connect("mongodb://127.0.0.1:27017/hackItOutDB");
 
 const userSchema= new mongoose.Schema({
     email: String,
-    password: String
+    password: String,
+    googleId: String
 });
 
 userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User= mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, {
+        id: user.id,
+        username: user.username,
+        picture: user.picture
+      });
+    });
+  });
+  
+  passport.deserializeUser(function(user, cb) {
+    process.nextTick(function() {
+      return cb(null, user);
+    });
+  });
 
 const courseSchema= new mongoose.Schema({
     url: String,
@@ -57,25 +75,64 @@ const fieldSchema= new mongoose.Schema({
 
 const Field= mongoose.model("Field", fieldSchema);
 
-const newField= new Field({
-    fieldName: "App Development",
-    upperField: "tech",
-    courses: []
-})
+// const newField= new Field({
+//     fieldName: "Digital Electronics",
+//     upperField: "gate",
+//     courses: []
+// })
 
 // newField.save();
 
-const newFields= new Field({
-    fieldName: "Power System",
-    upperField: "gate",
-    courses: [],
-})
+// const newFields= new Field({
+//     fieldName: "UPSC",
+//     upperField: "civilServices",
+//     courses: [],
+// })
 
 // newFields.save();
 
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/learnBetter"
+  },
+  async function (accessToken, refreshToken, profile, done) {
+    try {
+    //   console.log(profile);
+      // Find or create user in your database
+      let user = await User.findOne({ googleId: profile.id });
+      if (!user) {
+        // Create new user in database
+        const username = Array.isArray(profile.emails) && profile.emails.length > 0 ? profile.emails[0].value.split('@')[0] : '';
+        const newUser = new User({
+          username: profile.displayName,
+          googleId: profile.id
+        });
+        user = await newUser.save();
+      }
+      return done(null, user);
+    } catch (err) {
+      return done(err);
+    }
+  }
+));
+
 app.get("/", function(req,res){
+    // console.log(req.user);
     res.render("home", {user:req.user});
 })
+
+app.get("/auth/google",
+  passport.authenticate("google", { scope: ['profile'] }),
+  function(req,res){
+  });
+
+app.get("/auth/google/learnBetter", 
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirect to secrets.
+    res.redirect("/");
+  });
 
 app.get("/compose", function(req,res){
     res.render("compose");
