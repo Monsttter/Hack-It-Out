@@ -17,9 +17,9 @@ Technex Hackathon
 # Introduction
 The EdTech Platform is a comprehensive online learning platform that empowers users to access educational materials, including videos and documents. It fosters a personalized learning experience by categorizing resources for various age groups and provides a mentorship feature to connect users with mentors across diverse fields. Additionally, it implements a video rating system to gather feedback on the quality of educational content and ensures secure user registration and login processes for a personalized experience.
 
-<img src="public/images/Brothers of Night's Watch.webm"> <br/>
 
-https://drive.google.com/file/d/1vDJ1nBR1KvS7tb0Pr09CplvhFcQpNOS4/view?usp=sharing
+
+https://github.com/Monsttter/Hack-It-Out/assets/93855467/32722757-6b9e-4176-8417-21e6f18174f8
 
 
 
